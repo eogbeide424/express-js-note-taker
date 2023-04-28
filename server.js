@@ -40,7 +40,7 @@ app.get('/api/notes',(req,res)=> {
     // res.sendFile(path.join(__dirname, '/public/pages/notes.html'))
 });
 
-app.post('/api/pages/notes', (req, res) => {
+app.post('/api/notes', (req, res) => {
 
     // Destructuring assignment for the items in req.body
     const {id,title,text} = req.body;
