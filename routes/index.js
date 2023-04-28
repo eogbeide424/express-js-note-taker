@@ -1,14 +1,14 @@
 const express = require('express');
+const app = express.Router();
+// const app = require('express').Router();
 
 // Import our modular routers for /tips and /feedback
-const tipsRouter = require('./tips');
-const feedbackRouter = require('./feedback');
+const notesRouter = require('./notes');
 // TODO: import your diagnostics route
 
-const app = express();
+// const app = express();
 
-app.use('/tips', tipsRouter);
-app.use('/feedback', feedbackRouter);
+app.use('/notes', notesRouter);
 // TODO: Initialize diagnostics route
 
 module.exports = app;
