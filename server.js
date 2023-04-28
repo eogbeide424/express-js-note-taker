@@ -4,6 +4,7 @@ const path = require('path');
 const api =require('./routes/index.js');
 const data = require('./db/db.json');
 const uuidv4 = require('./helpers/uuid.js');
+const { readAndAppend, readFromFile } = require('./helpers/fsUtils.js');
 const PORT = process.env.port || 3002;
 
 const app = express();
@@ -24,11 +25,19 @@ app.get('/',(req,res)=>
     res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
+app.get('/api',(req,res)=>res.json(data));
 // get route for notes
-app.get('/api/pages/notes',(req,res)=> {
+app.get('/pages/notes',(req,res)=> {
+//     res.json(data);
+//   readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));   
+    res.sendFile(path.join(__dirname, '/public/pages/notes.html'))
+});
+
+
+app.get('/api/notes',(req,res)=> {
     res.json(data);
   readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));   
-    res.sendFile(path.join(__dirname, '/public/pages/notes.html'))
+    // res.sendFile(path.join(__dirname, '/public/pages/notes.html'))
 });
 
 app.post('/api/pages/notes', (req, res) => {
